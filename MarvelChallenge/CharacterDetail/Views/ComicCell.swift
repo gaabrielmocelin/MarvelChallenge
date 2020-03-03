@@ -9,6 +9,7 @@
 import UIKit
 
 final class ComicCell: UITableViewCell {
+    var comic: Comic?
     
     let comicImageView = UIImageView()
     let titleLabel = UILabel(fontSize: 14, weight: .regular)
@@ -28,12 +29,16 @@ final class ComicCell: UITableViewCell {
     }
     
     func setup(with comic: Comic, imageService: ImageServiceProtocol) {
+        self.comic = comic
         titleLabel.text = comic.title
         
         imageService.fetchImage(imageURL: comic.imageUrl, with: .portraitMedium) { (result) in
             switch result {
             case .success(let image):
-                self.comicImageView.image = image
+                //validate if the donwloaded image stills matchs the comic, because cell may be reused.
+                if self.comic?.id == comic.id {
+                    self.comicImageView.image = image
+                }
             case .failure(_):
                 break
             }
@@ -68,5 +73,9 @@ extension ComicCell: ViewConfigurator {
         
         titleLabel.numberOfLines = 0
         titleLabel.textColor = .white
+        
+        comicImageView.backgroundColor = .marvelBlack
+        comicImageView.layer.cornerRadius = 3
+        comicImageView.clipsToBounds = true
     }
 }

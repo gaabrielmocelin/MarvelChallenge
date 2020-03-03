@@ -23,7 +23,7 @@ final class CharactersViewModel: ViewModel {
     
     func fetchCharacteres(completion: @escaping (Result<[IndexPath], Error>) -> Void) {
         //doesnt fetch anymore if has downloaded all the characteres
-        guard let total = marvelService.totalCharacteresNumber, total > characteres.count else {
+        if let total = marvelService.totalCharacteresNumber, characteres.count >= total {
             completion(.success([]))
             return
         }

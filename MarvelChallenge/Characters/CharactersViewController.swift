@@ -21,6 +21,8 @@ final class CharactersViewController: UIViewController, SceneController {
         return collectionView
     }()
     
+    private let activityIndicator = ActivityIndicator()
+    
     init(viewModel: CharactersViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
@@ -34,11 +36,14 @@ final class CharactersViewController: UIViewController, SceneController {
         super.viewDidLoad()
         setupViewConfiguration()
         
+        activityIndicator.show(on: view)
         fetchCharacters()
     }
     
     private func fetchCharacters() {
         viewModel.fetchCharacteres { [unowned self] (result) in
+            self.activityIndicator.hide()
+            
             switch result {
             case .success(let indexes):
                 self.collectionView.insertItems(at: indexes)

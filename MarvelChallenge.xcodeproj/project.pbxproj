@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E11F65B0240F1E670056D078 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E11F65AF240F1E670056D078 /* ActivityIndicator.swift */; };
 		E174DDDD240D8B530047F72A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E174DDDC240D8B530047F72A /* AppDelegate.swift */; };
 		E174DDE6240D8B580047F72A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E174DDE5240D8B580047F72A /* Assets.xcassets */; };
 		E174DDE9240D8B580047F72A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E174DDE7240D8B580047F72A /* LaunchScreen.storyboard */; };
@@ -55,6 +56,7 @@
 
 /* Begin PBXFileReference section */
 		C7A5638DAB1CC8D198613E75 /* Pods-MarvelChallenge.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MarvelChallenge.release.xcconfig"; path = "Target Support Files/Pods-MarvelChallenge/Pods-MarvelChallenge.release.xcconfig"; sourceTree = "<group>"; };
+		E11F65AF240F1E670056D078 /* ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
 		E174DDD9240D8B530047F72A /* MarvelChallenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MarvelChallenge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E174DDDC240D8B530047F72A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E174DDE5240D8B580047F72A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -177,6 +179,7 @@
 				E174DE00240D8BD60047F72A /* ReusableView.swift */,
 				E174DE02240D8BD60047F72A /* ViewConfigurator.swift */,
 				E174DE36240DF4D80047F72A /* AppearanceHelper.swift */,
+				E11F65AF240F1E670056D078 /* ActivityIndicator.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -449,6 +452,7 @@
 				E174DE24240D8E960047F72A /* CharactersViewModel.swift in Sources */,
 				E174DE15240D8BD60047F72A /* UIColor.swift in Sources */,
 				E174DE1E240D8BD60047F72A /* SceneTransitionType.swift in Sources */,
+				E11F65B0240F1E670056D078 /* ActivityIndicator.swift in Sources */,
 				E174DE19240D8BD60047F72A /* UIViewController.swift in Sources */,
 				E174DE37240DF4D80047F72A /* AppearanceHelper.swift in Sources */,
 				E174DE14240D8BD60047F72A /* ViewConfigurator.swift in Sources */,

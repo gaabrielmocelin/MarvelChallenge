@@ -35,14 +35,33 @@ final class CharacterDetailViewController: UIViewController, SceneController {
         super.viewDidLoad()
         setupViewConfiguration()
         
+        performFetchs()
+    }
+    
+    private func performFetchs() {
+        let activity = ActivityIndicator()
+        activity.show(on: view)
+        
+        let group = DispatchGroup()
+        
+        group.enter()
         viewModel.fetchImage { [weak self] (image) in
+            group.leave()
             if let image = image {
                 self?.imageView.image = image
             }
         }
         
+        group.enter()
         viewModel.fetchComics { [weak self] in
+            group.leave()
             self?.tableView.reloadData()
+        }
+        
+        group.notify(queue: .main) {
+            activity.hide()
+            self.imageView.isHidden = false
+            self.tableView.isHidden = false
         }
     }
     
@@ -135,5 +154,8 @@ extension CharacterDetailViewController: ViewConfigurator {
         
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
+        
+        imageView.isHidden = true
+        tableView.isHidden = true
     }
 }
