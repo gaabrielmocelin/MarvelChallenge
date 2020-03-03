@@ -17,4 +17,14 @@ struct Keys {
         case landscapeLarge = "landscape_xlarge"
         case portraitMedium = "portrait_medium"
     }
+    
+    var defaultParameters: [String: Any] {
+        let timestamp = "\(Date().timeIntervalSinceNow)"
+        let hash = "\(timestamp)\(Keys.marvelPrivateKey)\(Keys.marvelPublicKey)".md5()
+        return [
+            "ts": timestamp,
+            "hash": hash,
+            "apikey": Keys.marvelPublicKey,
+        ]
+    }
 }

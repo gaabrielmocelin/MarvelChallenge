@@ -27,7 +27,7 @@ final class CharacterCell: UICollectionViewCell {
         imageView.image = nil
     }
     
-    func setup(with char: Character, imageService: CharactersServiceProtocol) {
+    func setup(with char: Character, imageService: ImageServiceProtocol) {
         nameLabel.text = char.name
         
         //set placeholder

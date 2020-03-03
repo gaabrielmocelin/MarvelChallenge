@@ -11,12 +11,14 @@ import Foundation
 final class CharactersViewModel: ViewModel {
     var coordinator: SceneCoordinator
     var charactersService: CharactersServiceProtocol
+    var imageService: ImageServiceProtocol
     
     var characteres: [Character] = []
     
     init(coordinator: SceneCoordinator) {
         self.coordinator = coordinator
         self.charactersService = CharactersService()
+        self.imageService = ImageService()
     }
     
     func fetchCharacteres(completion: @escaping (Result<[IndexPath], Error>) -> Void) {
@@ -33,7 +35,7 @@ final class CharactersViewModel: ViewModel {
     
     func openCharacterDetail(at indexPath: IndexPath) {
         let char = characteres[indexPath.row]
-        let charViewModel = CharacterDetailViewModel(coordinator: coordinator, character: char, charactersService: charactersService)
+        let charViewModel = CharacterDetailViewModel(coordinator: coordinator, character: char, imageService: imageService)
         coordinator.transition(to: .characterDetail(charViewModel), type: .push)
     }
     

@@ -73,7 +73,7 @@ extension CharactersViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(for: indexPath, of: CharacterCell.self)
-        cell.setup(with: viewModel.characteres[indexPath.row], imageService: viewModel.charactersService)
+        cell.setup(with: viewModel.characteres[indexPath.row], imageService: viewModel.imageService)
         return cell
     }
 }

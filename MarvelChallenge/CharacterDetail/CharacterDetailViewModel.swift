@@ -11,16 +11,16 @@ import UIKit
 final class CharacterDetailViewModel: ViewModel {
     let coordinator: SceneCoordinator
     let character: Character
-    let charactersService: CharactersServiceProtocol
+    let imageService: ImageServiceProtocol
     
-    init(coordinator: SceneCoordinator, character: Character, charactersService: CharactersServiceProtocol) {
+    init(coordinator: SceneCoordinator, character: Character, imageService: ImageServiceProtocol) {
         self.coordinator = coordinator
         self.character = character
-        self.charactersService = charactersService
+        self.imageService = imageService
     }
     
     func fetchImage(completion: @escaping (UIImage?) -> Void) {
-        charactersService.fetchImage(imageURL: character.imageUrl, with: .landscapeLarge) { (result) in
+        imageService.fetchImage(imageURL: character.imageUrl, with: .landscapeLarge) { (result) in
             switch result {
             case .success(let image):
                 completion(image)
