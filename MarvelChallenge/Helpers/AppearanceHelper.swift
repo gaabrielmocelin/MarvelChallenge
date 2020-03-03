@@ -12,6 +12,7 @@ public struct AppearanceHelper {
     static public func setupNavigationBarAppearance() {
         let appearence = UINavigationBar.appearance()
         appearence.prefersLargeTitles = true
+        appearence.tintColor = .white
         
         if #available(iOS 13.0, *) {
             let navBarAppearance = UINavigationBarAppearance()
@@ -23,7 +24,6 @@ public struct AppearanceHelper {
             UINavigationBar.appearance(whenContainedInInstancesOf: [UINavigationController.self]).standardAppearance = navBarAppearance
             UINavigationBar.appearance(whenContainedInInstancesOf: [UINavigationController.self]).scrollEdgeAppearance = navBarAppearance
         } else {
-            appearence.tintColor = .white
             appearence.barTintColor = .marvelDarkGray
             appearence.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
             appearence.isTranslucent = true

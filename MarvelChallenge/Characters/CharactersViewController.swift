@@ -80,7 +80,7 @@ extension CharactersViewController: UICollectionViewDataSource {
 
 extension CharactersViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
+        viewModel.openCharacterDetail(at: indexPath)
     }
 }
 

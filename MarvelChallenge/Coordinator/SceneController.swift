@@ -20,4 +20,8 @@ extension SceneController where Self: UIViewController {
     func embedInNavigation() -> UINavigationController {
         return UINavigationController(rootViewController: self)
     }
+    
+    func popped() {
+        viewModel.coordinator.didPop()
+    }
 }

@@ -25,12 +25,10 @@ struct Thumbnail: Codable {
     let `extension`: String
 }
 
-// MARK: - Comics
 struct Comics: Codable {
     let items: [Comic]
 }
 
-// MARK: - ComicsItem
 struct Comic: Codable {
     let resourceURI: String
     let name: String

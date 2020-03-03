@@ -31,6 +31,12 @@ final class CharactersViewModel: ViewModel {
         }
     }
     
+    func openCharacterDetail(at indexPath: IndexPath) {
+        let char = characteres[indexPath.row]
+        let charViewModel = CharacterDetailViewModel(coordinator: coordinator, character: char, charactersService: charactersService)
+        coordinator.transition(to: .characterDetail(charViewModel), type: .push)
+    }
+    
     private func getIndexPathsToInsert(_ newCharacteres: [Character]) -> [IndexPath] {
        let startIndex = characteres.count - newCharacteres.count
        let endIndex = startIndex + newCharacteres.count

@@ -12,10 +12,12 @@ import UIKit
 enum Scene {
     
     case characters(CharactersViewModel)
+    case characterDetail(CharacterDetailViewModel)
     
     func viewController() -> UIViewController {
         switch self {
         case .characters(let viewModel): return CharactersViewController(viewModel: viewModel).embedInNavigation()
+        case .characterDetail(let viewModel): return CharacterDetailViewController(viewModel: viewModel)
         }
     }
 }
