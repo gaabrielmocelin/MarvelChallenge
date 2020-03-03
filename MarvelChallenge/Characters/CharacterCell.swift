@@ -23,6 +23,10 @@ final class CharacterCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func prepareForReuse() {
+        imageView.image = nil
+    }
+    
     func setup(with char: Character, imageService: CharactersServiceProtocol) {
         nameLabel.text = char.name
         
