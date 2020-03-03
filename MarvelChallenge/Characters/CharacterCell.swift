@@ -36,8 +36,8 @@ final class CharacterCell: UICollectionViewCell {
             switch result {
             case .success(let image):
                 self?.imageView.image = image
-            case .failure(_):
-                break
+            case .failure(let error):
+                print(error.localizedDescription)
             }
         }
     }

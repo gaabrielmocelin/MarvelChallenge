@@ -44,6 +44,7 @@ final class CharacterDetailViewController: UIViewController, SceneController {
         
         let group = DispatchGroup()
         
+        //TODO: handle error
         group.enter()
         viewModel.fetchImage { [weak self] (image) in
             group.leave()

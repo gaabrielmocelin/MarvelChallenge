@@ -48,7 +48,7 @@ final class CharactersViewController: UIViewController, SceneController {
             case .success(let indexes):
                 self.collectionView.insertItems(at: indexes)
             case .failure(let error):
-                //handle error
+                //TODO: handle error
                 print(error)
             }
         }

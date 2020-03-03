@@ -39,8 +39,8 @@ final class ComicCell: UITableViewCell {
                 if self.comic?.id == comic.id {
                     self.comicImageView.image = image
                 }
-            case .failure(_):
-                break
+            case .failure(let error):
+                print(error.localizedDescription)
             }
         }
     }
