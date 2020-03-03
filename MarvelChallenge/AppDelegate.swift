@@ -31,6 +31,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             fatalError("There is no window to present any scene")
         }
         
+        AppearanceHelper.setupNavigationBarAppearance()
+        
         let coordinator = Coordinator(window: window)
         
         let charactersViewModel = CharactersViewModel(coordinator: coordinator)
