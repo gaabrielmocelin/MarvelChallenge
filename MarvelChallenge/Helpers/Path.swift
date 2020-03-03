@@ -14,4 +14,8 @@ struct Path {
     func characteres() -> String {
         return "\(baseUrl)/characters"
     }
+    
+    func comics(id: Int) -> String {
+        return "\(characteres())/\(id)/comics"
+    }
 }

@@ -10,19 +10,19 @@ import Foundation
 
 final class CharactersViewModel: ViewModel {
     var coordinator: SceneCoordinator
-    var charactersService: CharactersServiceProtocol
+    var marvelService: MarvelAPIService
     var imageService: ImageServiceProtocol
     
     var characteres: [Character] = []
     
     init(coordinator: SceneCoordinator) {
         self.coordinator = coordinator
-        self.charactersService = CharactersService()
+        self.marvelService = MarvelAPI()
         self.imageService = ImageService()
     }
     
     func fetchCharacteres(completion: @escaping (Result<[IndexPath], Error>) -> Void) {
-        charactersService.fetchCaracteres(offset: characteres.count, limit: 20) { [unowned self] (result) in
+        marvelService.fetchCaracteres(offset: characteres.count, limit: 20) { [unowned self] (result) in
             switch result {
             case .success(let characteres):
                 self.characteres.append(contentsOf: characteres)

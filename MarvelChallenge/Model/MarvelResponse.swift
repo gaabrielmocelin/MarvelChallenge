@@ -9,12 +9,12 @@
 import Foundation
 
 // MARK: - Welcome
-struct MarvelResponse: Codable {
-    let data: DataClass
+struct MarvelResponse<T: Decodable>: Decodable {
+    let data: DataClass<T>
 }
 
 // MARK: - DataClass
-struct DataClass: Codable {
+struct DataClass<T: Decodable>: Decodable {
     let offset, limit, total, count: Int
-    let results: [Character]
+    let results: [T]
 }

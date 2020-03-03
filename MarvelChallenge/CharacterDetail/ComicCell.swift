@@ -23,7 +23,7 @@ final class ComicCell: UITableViewCell {
     }
     
     func setup(with comic: Comic) {
-        titleLabel.text = comic.name
+        titleLabel.text = comic.title
     }
 }
 

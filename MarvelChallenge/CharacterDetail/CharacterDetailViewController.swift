@@ -51,8 +51,7 @@ extension CharacterDetailViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
         case 0: return 1
-        case 1: return viewModel.character.comics.items.count
-        case 2: return viewModel.character.series.items.count
+        case 1: return 0
         default: return 0
         }
     }
@@ -65,11 +64,7 @@ extension CharacterDetailViewController: UITableViewDataSource {
             return cell
         case 1:
             let cell = tableView.dequeueReusableCell(for: indexPath, of: ComicCell.self)
-            cell.setup(with: viewModel.character.comics.items[indexPath.row])
-            return cell
-        case 2:
-            let cell = tableView.dequeueReusableCell(for: indexPath, of: ComicCell.self)
-            cell.setup(with: viewModel.character.series.items[indexPath.row])
+//            cell.setup(with:)
             return cell
         default: return UITableViewCell()
         }
