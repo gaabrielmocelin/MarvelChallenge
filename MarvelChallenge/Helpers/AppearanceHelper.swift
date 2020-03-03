@@ -18,13 +18,13 @@ public struct AppearanceHelper {
             navBarAppearance.configureWithOpaqueBackground()
             navBarAppearance.titleTextAttributes = [.foregroundColor: UIColor.white]
             navBarAppearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
-            navBarAppearance.backgroundColor = .marvelRed
+            navBarAppearance.backgroundColor = .marvelDarkGray
             
             UINavigationBar.appearance(whenContainedInInstancesOf: [UINavigationController.self]).standardAppearance = navBarAppearance
             UINavigationBar.appearance(whenContainedInInstancesOf: [UINavigationController.self]).scrollEdgeAppearance = navBarAppearance
         } else {
             appearence.tintColor = .white
-            appearence.barTintColor = .marvelRed
+            appearence.barTintColor = .marvelDarkGray
             appearence.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
             appearence.isTranslucent = true
         }

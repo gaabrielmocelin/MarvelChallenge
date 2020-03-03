@@ -54,12 +54,13 @@ final class CharactersViewController: UIViewController, SceneController {
         
         let padding: CGFloat = 10
         
-        let width: CGFloat = self.view.frame.width / 2 - padding
+        let width: CGFloat = self.view.frame.width / 2 - (padding * 2)
         let height: CGFloat = 300
         layout.itemSize = CGSize(width: width, height: height)
         layout.minimumLineSpacing = padding
         layout.minimumInteritemSpacing = padding
         layout.scrollDirection = .vertical
+        layout.sectionInset = UIEdgeInsets(top: padding, left: padding, bottom: padding, right: padding)
         
         return layout
     }
@@ -94,7 +95,7 @@ extension CharactersViewController: ViewConfigurator {
     
     func configureViews() {
         navigationItem.title = "Marvel Characteres"
-        view.backgroundColor = UIColor.marvelBlack
+        view.backgroundColor = .marvelDarkGray
         collectionView.backgroundColor = .clear
         
         collectionView.register(type: CharacterCell.self)

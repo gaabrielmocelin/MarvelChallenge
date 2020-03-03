@@ -66,12 +66,14 @@ extension CharacterCell: ViewConfigurator {
     }
     
     func configureViews() {
-        backgroundColor = .clear
+        backgroundColor = .marvelBlack
+        layer.cornerRadius = 10
+        clipsToBounds = true
+        
         nameLabel.textColor = .white
         separatorView.backgroundColor = .marvelRed
         
         nameLabel.numberOfLines = 0
         nameLabel.textAlignment = .center
-        imageView.backgroundColor = .green
     }
 }
