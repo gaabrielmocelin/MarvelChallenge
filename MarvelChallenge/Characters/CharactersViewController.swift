@@ -23,6 +23,21 @@ final class CharactersViewController: UIViewController, SceneController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .green
+        
+        CharactersService().fetchCharacters()
+    }
+}
+
+extension CharactersViewController: ViewConfigurator {
+    func buildViewHierarchy() {
+        
+    }
+    
+    func setupConstraints() {
+        
+    }
+    
+    func configureViews() {
+        
     }
 }
