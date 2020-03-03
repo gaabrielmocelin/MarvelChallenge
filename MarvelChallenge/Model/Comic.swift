@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Comic {
+struct Comic: Codable {
     let id: Int
     let title: String
     let thumbnail: Thumbnail

@@ -1,18 +1,17 @@
 //
-//  CharactersService.swift
+//  MarvelService.swift
 //  MarvelChallenge
 //
-//  Created by Gabriel Mocelin on 02/03/20.
+//  Created by Gabriel Mocelin on 03/03/20.
 //  Copyright © 2020 Gabriel Mocelin. All rights reserved.
 //
-
 import Foundation
 import CryptoSwift
 import Alamofire
 
 protocol MarvelAPIService {
     func fetchCaracteres(offset: Int, limit: Int, completion: @escaping (Result<[Character], Error>) -> Void)
-    func fetchComics(of char: Character, completion: @escaping (Result<[Character], Error>) -> Void)
+    func fetchComics(of char: Character, completion: @escaping (Result<[Comic], Error>) -> Void)
 }
 
 final class MarvelAPI: MarvelAPIService {
@@ -21,7 +20,7 @@ final class MarvelAPI: MarvelAPIService {
         performRequest(path: Path().characteres(), offset: offset, limit: limit, completion: completion)
     }
     
-    func fetchComics(of char: Character, completion: @escaping (Result<[Character], Error>) -> Void) {
+    func fetchComics(of char: Character, completion: @escaping (Result<[Comic], Error>) -> Void) {
         performRequest(path: Path().comics(id: char.id), offset: nil, limit: nil, completion: completion)
     }
     

@@ -24,6 +24,7 @@ final class CharacterCell: UICollectionViewCell {
     }
     
     override func prepareForReuse() {
+        super.prepareForReuse()
         imageView.image = nil
     }
     

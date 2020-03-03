@@ -35,7 +35,11 @@ final class CharactersViewModel: ViewModel {
     
     func openCharacterDetail(at indexPath: IndexPath) {
         let char = characteres[indexPath.row]
-        let charViewModel = CharacterDetailViewModel(coordinator: coordinator, character: char, imageService: imageService)
+        let charViewModel = CharacterDetailViewModel(coordinator: coordinator,
+                                                     character: char,
+                                                     marvelService: marvelService,
+                                                     imageService: imageService)
+        
         coordinator.transition(to: .characterDetail(charViewModel), type: .push)
     }
     

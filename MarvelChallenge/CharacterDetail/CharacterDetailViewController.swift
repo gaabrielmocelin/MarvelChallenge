@@ -33,6 +33,10 @@ final class CharacterDetailViewController: UIViewController, SceneController {
                 self?.imageView.image = image
             }
         }
+        
+        viewModel.fetchComics { [weak self] in
+            self?.tableView.reloadData()
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -51,7 +55,7 @@ extension CharacterDetailViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
         case 0: return 1
-        case 1: return 0
+        case 1: return viewModel.comics.count
         default: return 0
         }
     }
@@ -64,10 +68,24 @@ extension CharacterDetailViewController: UITableViewDataSource {
             return cell
         case 1:
             let cell = tableView.dequeueReusableCell(for: indexPath, of: ComicCell.self)
-//            cell.setup(with:)
+            cell.setup(with: viewModel.comics[indexPath.row], imageService: viewModel.imageService)
             return cell
         default: return UITableViewCell()
         }
+    }
+}
+
+extension CharacterDetailViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        guard section == 1 else { return nil }
+        
+        return SectionHeaderView(title: "Comics")
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        guard section == 1 else { return 0 }
+        
+        return 50
     }
 }
 
@@ -101,5 +119,6 @@ extension CharacterDetailViewController: ViewConfigurator {
         tableView.register(type: DescriptionCell.self)
         tableView.register(type: ComicCell.self)
         tableView.dataSource = self
+        tableView.delegate = self
     }
 }

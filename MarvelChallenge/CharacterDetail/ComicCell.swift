@@ -22,8 +22,22 @@ final class ComicCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setup(with comic: Comic) {
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        comicImageView.image = nil
+    }
+    
+    func setup(with comic: Comic, imageService: ImageServiceProtocol) {
         titleLabel.text = comic.title
+        
+        imageService.fetchImage(imageURL: comic.imageUrl, with: .portraitMedium) { (result) in
+            switch result {
+            case .success(let image):
+                self.comicImageView.image = image
+            case .failure(_):
+                break
+            }
+        }
     }
 }
 
@@ -35,17 +49,17 @@ extension ComicCell: ViewConfigurator {
     
     func setupConstraints() {
         comicImageView.translatesAutoresizingMaskIntoConstraints = false
-        comicImageView.topAnchor.constraint(equalTo: topAnchor).isActive = true
-        comicImageView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
-        comicImageView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
-        comicImageView.heightAnchor.constraint(equalToConstant: 200).isActive = true
-        comicImageView.widthAnchor.constraint(equalToConstant: 100).isActive = true
+        comicImageView.topAnchor.constraint(equalTo: topAnchor, constant: 20).isActive = true
+        comicImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20).isActive = true
+        comicImageView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -20).isActive = true
+        comicImageView.heightAnchor.constraint(equalToConstant: 170).isActive = true
+        comicImageView.widthAnchor.constraint(equalToConstant: 120).isActive = true
         
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        titleLabel.topAnchor.constraint(equalTo: topAnchor).isActive = true
+        titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: 20).isActive = true
         titleLabel.leadingAnchor.constraint(equalTo: comicImageView.trailingAnchor, constant: 15).isActive = true
         titleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -15).isActive = true
-        titleLabel.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
+        titleLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -20).isActive = true
     }
     
     func configureViews() {

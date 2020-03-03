@@ -12,11 +12,15 @@ final class CharacterDetailViewModel: ViewModel {
     let coordinator: SceneCoordinator
     let character: Character
     let imageService: ImageServiceProtocol
+    let marvelService: MarvelAPIService
     
-    init(coordinator: SceneCoordinator, character: Character, imageService: ImageServiceProtocol) {
+    var comics: [Comic] = []
+    
+    init(coordinator: SceneCoordinator, character: Character, marvelService: MarvelAPIService, imageService: ImageServiceProtocol) {
         self.coordinator = coordinator
         self.character = character
         self.imageService = imageService
+        self.marvelService = marvelService
     }
     
     func fetchImage(completion: @escaping (UIImage?) -> Void) {
@@ -26,6 +30,19 @@ final class CharacterDetailViewModel: ViewModel {
                 completion(image)
             case .failure(_):
                 completion(nil)
+            }
+        }
+    }
+    
+    func fetchComics(completion: @escaping () -> Void) {
+        marvelService.fetchComics(of: character) { [weak self] (result) in
+            switch result {
+            case .success(let comics):
+                self?.comics = comics
+                completion()
+            case .failure(let error):
+                print(error)
+                completion()
             }
         }
     }
