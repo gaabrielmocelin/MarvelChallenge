@@ -17,8 +17,8 @@ final class CharacterDetailViewController: UIViewController, SceneController {
     
     // The variant sizes of image view
     let imageViewDefaultHeight: CGFloat = 250
-    let imageViewMinimunHeight: CGFloat = 150
-    let imageViewMaxHeight: CGFloat = 300
+    let imageViewMinimunHeight: CGFloat = 100
+    let imageViewMaxHeight: CGFloat = 350
     
     var imageViewHeightConstraint: NSLayoutConstraint?
     
@@ -91,7 +91,7 @@ extension CharacterDetailViewController: UIScrollViewDelegate, UITableViewDelega
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let y = imageViewDefaultHeight - (scrollView.contentOffset.y + imageViewDefaultHeight)
         imageViewHeightConstraint?.constant = min(max(y, imageViewMinimunHeight), imageViewMaxHeight)
-        
+
         UIView.animate(withDuration: 0) {
             self.view.layoutIfNeeded()
         }
@@ -132,5 +132,8 @@ extension CharacterDetailViewController: ViewConfigurator {
         tableView.register(type: ComicCell.self)
         tableView.dataSource = self
         tableView.delegate = self
+        
+        imageView.contentMode = .scaleAspectFill
+        imageView.clipsToBounds = true
     }
 }
