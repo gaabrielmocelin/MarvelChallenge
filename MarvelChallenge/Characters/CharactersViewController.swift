@@ -82,6 +82,12 @@ extension CharactersViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         viewModel.openCharacterDetail(at: indexPath)
     }
+    
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        if indexPath.row == viewModel.characteres.count - 10 {
+            fetchCharacters()
+        }
+    }
 }
 
 extension CharactersViewController: ViewConfigurator {

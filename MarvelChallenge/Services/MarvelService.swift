@@ -10,11 +10,14 @@ import CryptoSwift
 import Alamofire
 
 protocol MarvelAPIService {
+    var totalCharacteresNumber: Int? { get }
     func fetchCaracteres(offset: Int, limit: Int, completion: @escaping (Result<[Character], Error>) -> Void)
     func fetchComics(of char: Character, completion: @escaping (Result<[Comic], Error>) -> Void)
 }
 
 final class MarvelAPI: MarvelAPIService {
+    
+    var totalCharacteresNumber: Int?
     
     func fetchCaracteres(offset: Int, limit: Int, completion: @escaping (Result<[Character], Error>) -> Void) {
         performRequest(path: Path().characteres(), offset: offset, limit: limit, completion: completion)
@@ -45,6 +48,7 @@ final class MarvelAPI: MarvelAPIService {
             switch response.result {
             case .success(let dict):
                 if let dict = dict as? [String: Any], let marvelResponse = MarvelResponse<T>(from: dict) {
+                    self.totalCharacteresNumber = marvelResponse.data.total
                     completion(.success(marvelResponse.data.results))
                 } else {
                     completion(.failure(NetworkError.unableToParseJSON))
