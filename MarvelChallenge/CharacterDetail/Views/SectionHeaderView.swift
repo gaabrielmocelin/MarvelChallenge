@@ -8,32 +8,31 @@
 
 import UIKit
 
-final class SectionHeaderView: UIView {
+final class SectionHeaderCell: UITableViewCell {
     
     let titleLabel = UILabel(fontSize: 17, weight: .bold)
     
-    init(title: String) {
-        super.init(frame: .zero)
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupViewConfiguration()
-        titleLabel.text = title
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    func setup(with text: String) {
+        titleLabel.text = text
+    }
 }
 
-extension SectionHeaderView: ViewConfigurator {
+extension SectionHeaderCell: ViewConfigurator {
     func buildViewHierarchy() {
         addSubview(titleLabel)
     }
     
     func setupConstraints() {
-        titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        titleLabel.topAnchor.constraint(equalTo: topAnchor).isActive = true
-        titleLabel.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
-        titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20).isActive = true
-        titleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20).isActive = true
+        titleLabel.equalConstraintsTo(view: self, constant: 20)
     }
     
     func configureViews() {

@@ -15,6 +15,13 @@ final class CharacterDetailViewController: UIViewController, SceneController {
     var imageView = UIImageView()
     var tableView = UITableView()
     
+    // The variant sizes of image view
+    let imageViewDefaultHeight: CGFloat = 250
+    let imageViewMinimunHeight: CGFloat = 150
+    let imageViewMaxHeight: CGFloat = 300
+    
+    var imageViewHeightConstraint: NSLayoutConstraint?
+    
     init(viewModel: CharacterDetailViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
@@ -55,7 +62,8 @@ extension CharacterDetailViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
         case 0: return 1
-        case 1: return viewModel.comics.count
+        case 1: return viewModel.comics.count > 0 ? 1 : 0
+        case 2: return viewModel.comics.count
         default: return 0
         }
     }
@@ -67,6 +75,10 @@ extension CharacterDetailViewController: UITableViewDataSource {
             cell.setup(with: viewModel.character.description)
             return cell
         case 1:
+            let cell = tableView.dequeueReusableCell(for: indexPath, of: SectionHeaderCell.self)
+            cell.setup(with: "Comics")
+            return cell
+        case 2:
             let cell = tableView.dequeueReusableCell(for: indexPath, of: ComicCell.self)
             cell.setup(with: viewModel.comics[indexPath.row], imageService: viewModel.imageService)
             return cell
@@ -75,35 +87,33 @@ extension CharacterDetailViewController: UITableViewDataSource {
     }
 }
 
-extension CharacterDetailViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        guard section == 1 else { return nil }
+extension CharacterDetailViewController: UIScrollViewDelegate, UITableViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let y = imageViewDefaultHeight - (scrollView.contentOffset.y + imageViewDefaultHeight)
+        imageViewHeightConstraint?.constant = min(max(y, imageViewMinimunHeight), imageViewMaxHeight)
         
-        return SectionHeaderView(title: "Comics")
-    }
-    
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        guard section == 1 else { return 0 }
-        
-        return 50
+        UIView.animate(withDuration: 0) {
+            self.view.layoutIfNeeded()
+        }
     }
 }
 
 extension CharacterDetailViewController: ViewConfigurator {
     func buildViewHierarchy() {
-        view.addSubview(imageView)
         view.addSubview(tableView)
+        view.addSubview(imageView)
     }
     
     func setupConstraints() {
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        imageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
         imageView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         imageView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        imageView.heightAnchor.constraint(equalToConstant: 400).isActive = true
+        imageViewHeightConstraint = imageView.heightAnchor.constraint(equalToConstant: imageViewDefaultHeight)
+        imageViewHeightConstraint?.isActive = true
         
         tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.topAnchor.constraint(equalTo: imageView.bottomAnchor).isActive = true
+        tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
         tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
@@ -115,7 +125,9 @@ extension CharacterDetailViewController: ViewConfigurator {
         
         tableView.backgroundColor = .clear
         tableView.separatorStyle = .none
+        tableView.contentInset = UIEdgeInsets(top: imageViewDefaultHeight, left: 0, bottom: 0, right: 0)
         
+        tableView.register(type: SectionHeaderCell.self)
         tableView.register(type: DescriptionCell.self)
         tableView.register(type: ComicCell.self)
         tableView.dataSource = self

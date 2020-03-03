@@ -257,11 +257,19 @@
 			children = (
 				E174DE3B240ECEFD0047F72A /* CharacterDetailViewController.swift */,
 				E174DE3D240ECF080047F72A /* CharacterDetailViewModel.swift */,
+				E174DE4F240EF9AF0047F72A /* Views */,
+			);
+			path = CharacterDetail;
+			sourceTree = "<group>";
+		};
+		E174DE4F240EF9AF0047F72A /* Views */ = {
+			isa = PBXGroup;
+			children = (
 				E174DE3F240EDE4E0047F72A /* ComicCell.swift */,
 				E174DE41240EE0550047F72A /* DescriptionCell.swift */,
 				E174DE4D240EF7D60047F72A /* SectionHeaderView.swift */,
 			);
-			path = CharacterDetail;
+			path = Views;
 			sourceTree = "<group>";
 		};
 		F1C6C7F7E376677B012F8362 /* Pods */ = {
