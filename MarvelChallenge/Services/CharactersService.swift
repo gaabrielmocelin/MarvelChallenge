@@ -9,25 +9,24 @@
 import Foundation
 import CryptoSwift
 import Alamofire
+import AlamofireImage
 
 protocol CharactersServiceProtocol {
     func fetchCaracteres(offset: Int, limit: Int, completion: @escaping (Result<[Character], Error>) -> Void)
+    func fetchImage(imageURL: String, with size: Keys.ImageSize, completion: @escaping(Result<UIImage, Error>) -> Void)
 }
 
 final class CharactersService: CharactersServiceProtocol {
-    let marvelPublicKey = "d509a72eb44eb9bf5a030a9a5636782d"
-    let marvelPrivateKey = "726f10e751a00937bd9cbbb068c746f2e4b02d9d"
     
-    let baseUrl = "https://gateway.marvel.com/v1/public"
-    let characters = "/characters"
+    private let imageCache = AutoPurgingImageCache()
     
     var defaultParameters: [String: Any] {
         let timestamp = "\(Date().timeIntervalSinceNow)"
-        let hash = "\(timestamp)\(marvelPrivateKey)\(marvelPublicKey)".md5()
+        let hash = "\(timestamp)\(Keys.marvelPrivateKey)\(Keys.marvelPublicKey)".md5()
         return [
             "ts": timestamp,
             "hash": hash,
-            "apikey": marvelPublicKey,
+            "apikey": Keys.marvelPublicKey,
         ]
     }
     
@@ -36,9 +35,9 @@ final class CharactersService: CharactersServiceProtocol {
         params["offset"] = offset
         params["limit"] = limit
         
-        AF.request("\(baseUrl)\(characters)",
+        AF.request(Path().characteres(),
                    method: .get,
-                   parameters: defaultParameters,
+                   parameters: params,
                    encoding: URLEncoding.queryString,
                    headers: nil)
             .responseJSON { (response) in
@@ -54,6 +53,29 @@ final class CharactersService: CharactersServiceProtocol {
                 }
         }
     }
+    
+    func fetchImage(imageURL: String, with size: Keys.ImageSize, completion: @escaping(Result<UIImage, Error>) -> Void) {
+        let imagePath = String(format: imageURL, size.rawValue)
+        if let cachedImage = imageCache.image(withIdentifier: imagePath) {
+            completion(.success(cachedImage))
+            return
+        }
+        
+        AF.request(imagePath,
+                   method: .get,
+                   parameters: defaultParameters,
+                   encoding: URLEncoding.queryString,
+                   headers: nil)
+            .responseImage { [unowned self] response in
+                switch response.result {
+                case .success(let image):
+                    self.imageCache.add(image, withIdentifier: imagePath)
+                    completion(.success(image))
+                case .failure(let error):
+                    completion(.failure(error))
+                }
+        }
+    }
 }
 
 final class CharactersServiceMock: CharactersServiceProtocol {
@@ -63,5 +85,9 @@ final class CharactersServiceMock: CharactersServiceProtocol {
         let ch2 = Character(id: 1, name: "Teste 2", description: "Teste 2", thumbnail: Thumbnail(path: "", extension: ""), comics: Comics(items: []), series: Comics(items: []))
         
         completion(.success([ch1, ch2]))
+    }
+    
+    func fetchImage(imageURL: String, with size: Keys.ImageSize, completion: @escaping(Result<UIImage, Error>) -> Void) {
+        completion(.success(UIImage()))
     }
 }

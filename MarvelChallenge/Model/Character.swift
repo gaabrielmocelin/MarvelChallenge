@@ -14,6 +14,10 @@ struct Character: Codable {
     let description: String
     let thumbnail: Thumbnail
     let comics, series: Comics
+    
+    var imageUrl: String {
+        return "\(thumbnail.path)/%@.\(thumbnail.extension)"
+    }
 }
 
 struct Thumbnail: Codable {

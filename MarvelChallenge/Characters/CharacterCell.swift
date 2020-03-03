@@ -23,8 +23,18 @@ final class CharacterCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setup(with char: Character) {
+    func setup(with char: Character, imageService: CharactersServiceProtocol) {
         nameLabel.text = char.name
+        
+        //set placeholder
+        imageService.fetchImage(imageURL: char.imageUrl, with: .portraitLarge) { [weak self] (result) in
+            switch result {
+            case .success(let image):
+                self?.imageView.image = image
+            case .failure(_):
+                break
+            }
+        }
     }
 }
 

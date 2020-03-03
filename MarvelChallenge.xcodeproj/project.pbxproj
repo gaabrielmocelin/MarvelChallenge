@@ -20,7 +20,6 @@
 		E174DE17240D8BD60047F72A /* Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E174DE06240D8BD60047F72A /* Codable.swift */; };
 		E174DE19240D8BD60047F72A /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E174DE08240D8BD60047F72A /* UIViewController.swift */; };
 		E174DE1A240D8BD60047F72A /* UILabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E174DE09240D8BD60047F72A /* UILabel.swift */; };
-		E174DE1B240D8BD60047F72A /* UIButtton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E174DE0A240D8BD60047F72A /* UIButtton.swift */; };
 		E174DE1C240D8BD60047F72A /* Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = E174DE0C240D8BD60047F72A /* Scene.swift */; };
 		E174DE1D240D8BD60047F72A /* ViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E174DE0D240D8BD60047F72A /* ViewModelProtocol.swift */; };
 		E174DE1E240D8BD60047F72A /* SceneTransitionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E174DE0E240D8BD60047F72A /* SceneTransitionType.swift */; };
@@ -33,6 +32,7 @@
 		E174DE31240DE6DC0047F72A /* MarvelResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E174DE30240DE6DC0047F72A /* MarvelResponse.swift */; };
 		E174DE33240DEED20047F72A /* CharacterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E174DE32240DEED20047F72A /* CharacterCell.swift */; };
 		E174DE37240DF4D80047F72A /* AppearanceHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E174DE36240DF4D80047F72A /* AppearanceHelper.swift */; };
+		E174DE39240EA6BC0047F72A /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = E174DE38240EA6BC0047F72A /* Keys.swift */; };
 		F29F4AF751E3069112F0CA46 /* Pods_MarvelChallenge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED8E3EAE78700FC0CB8BC480 /* Pods_MarvelChallenge.framework */; };
 /* End PBXBuildFile section */
 
@@ -65,7 +65,6 @@
 		E174DE06240D8BD60047F72A /* Codable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Codable.swift; sourceTree = "<group>"; };
 		E174DE08240D8BD60047F72A /* UIViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
 		E174DE09240D8BD60047F72A /* UILabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UILabel.swift; sourceTree = "<group>"; };
-		E174DE0A240D8BD60047F72A /* UIButtton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIButtton.swift; sourceTree = "<group>"; };
 		E174DE0C240D8BD60047F72A /* Scene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Scene.swift; sourceTree = "<group>"; };
 		E174DE0D240D8BD60047F72A /* ViewModelProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewModelProtocol.swift; sourceTree = "<group>"; };
 		E174DE0E240D8BD60047F72A /* SceneTransitionType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneTransitionType.swift; sourceTree = "<group>"; };
@@ -78,6 +77,7 @@
 		E174DE30240DE6DC0047F72A /* MarvelResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarvelResponse.swift; sourceTree = "<group>"; };
 		E174DE32240DEED20047F72A /* CharacterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterCell.swift; sourceTree = "<group>"; };
 		E174DE36240DF4D80047F72A /* AppearanceHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppearanceHelper.swift; sourceTree = "<group>"; };
+		E174DE38240EA6BC0047F72A /* Keys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keys.swift; sourceTree = "<group>"; };
 		ED8E3EAE78700FC0CB8BC480 /* Pods_MarvelChallenge.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MarvelChallenge.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F5579B1B8C66B2669EE2A69C /* Pods-MarvelChallenge.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MarvelChallenge.debug.xcconfig"; path = "Target Support Files/Pods-MarvelChallenge/Pods-MarvelChallenge.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -156,6 +156,7 @@
 		E174DDFE240D8BD60047F72A /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				E174DE38240EA6BC0047F72A /* Keys.swift */,
 				E174DDFF240D8BD60047F72A /* Path.swift */,
 				E174DE01240D8BD60047F72A /* NetworkError.swift */,
 				E174DE00240D8BD60047F72A /* ReusableView.swift */,
@@ -173,7 +174,6 @@
 				E174DE06240D8BD60047F72A /* Codable.swift */,
 				E174DE08240D8BD60047F72A /* UIViewController.swift */,
 				E174DE09240D8BD60047F72A /* UILabel.swift */,
-				E174DE0A240D8BD60047F72A /* UIButtton.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -389,6 +389,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E174DE16240D8BD60047F72A /* UIView+constraints.swift in Sources */,
+				E174DE39240EA6BC0047F72A /* Keys.swift in Sources */,
 				E174DE20240D8BD60047F72A /* SceneController.swift in Sources */,
 				E174DE12240D8BD60047F72A /* ReusableView.swift in Sources */,
 				E174DE33240DEED20047F72A /* CharacterCell.swift in Sources */,
@@ -401,7 +402,6 @@
 				E174DE1C240D8BD60047F72A /* Scene.swift in Sources */,
 				E174DE22240D8E6E0047F72A /* CharactersViewController.swift in Sources */,
 				E174DE24240D8E960047F72A /* CharactersViewModel.swift in Sources */,
-				E174DE1B240D8BD60047F72A /* UIButtton.swift in Sources */,
 				E174DE15240D8BD60047F72A /* UIColor.swift in Sources */,
 				E174DE1E240D8BD60047F72A /* SceneTransitionType.swift in Sources */,
 				E174DE19240D8BD60047F72A /* UIViewController.swift in Sources */,
