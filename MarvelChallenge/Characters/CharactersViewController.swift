@@ -101,7 +101,7 @@ extension CharactersViewController: ViewConfigurator {
     }
     
     func setupConstraints() {
-        collectionView.equalConstraintsTo(view: view)
+        collectionView.equalConstraintsToSafeArea(view: view)
     }
     
     func configureViews() {

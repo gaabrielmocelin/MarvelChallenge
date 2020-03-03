@@ -249,8 +249,8 @@
 			isa = PBXGroup;
 			children = (
 				E174DE2E240DE3810047F72A /* Character.swift */,
-				E174DE30240DE6DC0047F72A /* MarvelResponse.swift */,
 				E174DE47240EEC980047F72A /* Comic.swift */,
+				E174DE30240DE6DC0047F72A /* MarvelResponse.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
