@@ -49,6 +49,7 @@ final class CharactersViewModel: ViewModel {
         coordinator.transition(to: .characterDetail(charViewModel), type: .push)
     }
     
+    ///due to pagination, we only insert the new rows instead of reload all table
     private func getIndexPathsToInsert(_ newCharacteres: [Character]) -> [IndexPath] {
        let startIndex = characteres.count - newCharacteres.count
        let endIndex = startIndex + newCharacteres.count

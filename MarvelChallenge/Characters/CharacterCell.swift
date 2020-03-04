@@ -31,7 +31,6 @@ final class CharacterCell: UICollectionViewCell {
     func setup(with char: Character, imageService: ImageServiceProtocol) {
         nameLabel.text = char.name
         
-        //set placeholder
         imageService.fetchImage(imageURL: char.imageUrl, with: .portraitLarge) { [weak self] (result) in
             switch result {
             case .success(let image):

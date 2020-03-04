@@ -8,6 +8,7 @@
 
 import UIKit
 
+//loader to indicate some download is running.
 class ActivityIndicator {
     
     var containerView = UIView()

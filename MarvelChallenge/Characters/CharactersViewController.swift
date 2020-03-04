@@ -9,6 +9,7 @@
 import UIKit
 
 final class CharactersViewController: UIViewController, SceneController {
+    //Mark: properties
     typealias T = CharactersViewModel
     var viewModel: CharactersViewModel
     
@@ -23,6 +24,7 @@ final class CharactersViewController: UIViewController, SceneController {
     
     private let activityIndicator = ActivityIndicator()
     
+    //Mark: functions
     init(viewModel: CharactersViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)

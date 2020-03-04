@@ -15,7 +15,7 @@ final class CharacterDetailViewController: UIViewController, SceneController {
     var imageView = UIImageView()
     var tableView = UITableView()
     
-    // The variant sizes of image view
+    // The variant sizes of image view for animation
     let imageViewDefaultHeight: CGFloat = 250
     let imageViewMinimunHeight: CGFloat = 100
     let imageViewMaxHeight: CGFloat = 350
@@ -42,6 +42,7 @@ final class CharacterDetailViewController: UIViewController, SceneController {
         let activity = ActivityIndicator()
         activity.show(on: view)
         
+        //dispatch group to present all data together after fetchs
         let group = DispatchGroup()
         
         group.enter()
@@ -99,6 +100,8 @@ extension CharacterDetailViewController: UITableViewDataSource {
             cell.setup(with: viewModel.character.description)
             return cell
         case 1:
+            //this header needs to be treated as a cell instead of a header for the animation of imageview
+            //because headers stop scrolling on the top of table view.
             let cell = tableView.dequeueReusableCell(for: indexPath, of: SectionHeaderCell.self)
             cell.setup(with: "Comics")
             return cell
@@ -112,6 +115,7 @@ extension CharacterDetailViewController: UITableViewDataSource {
 }
 
 extension CharacterDetailViewController: UIScrollViewDelegate, UITableViewDelegate {
+    //calculate and perform animation to change the imageview height based on table view offset
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let y = imageViewDefaultHeight - (scrollView.contentOffset.y + imageViewDefaultHeight)
         imageViewHeightConstraint?.constant = min(max(y, imageViewMinimunHeight), imageViewMaxHeight)

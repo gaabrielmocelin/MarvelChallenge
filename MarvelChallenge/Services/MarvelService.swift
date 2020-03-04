@@ -16,7 +16,7 @@ protocol MarvelAPIService {
 }
 
 final class MarvelAPI: MarvelAPIService {
-    
+    ///used to validate if has downloaded all the characters to not perform more requests.
     var totalCharacteresNumber: Int?
     
     func fetchCaracteres(offset: Int, limit: Int, completion: @escaping (Result<[Character], Error>) -> Void) {
@@ -56,6 +56,40 @@ final class MarvelAPI: MarvelAPIService {
             case .failure(let error):
                 completion(.failure(error))
             }
+        }
+    }
+}
+
+
+
+//Mark: MOCK
+final class MarvelAPIMock: MarvelAPIService {
+    
+    var shouldFailRequests = false
+    
+    var totalCharacteresNumber: Int?
+    
+    func fetchCaracteres(offset: Int, limit: Int, completion: @escaping (Result<[Character], Error>) -> Void) {
+        if shouldFailRequests {
+            completion(.failure(NetworkError.unableToParseJSON))
+        } else {
+            let char1 = Character(id: 1, name: "Spider Man", description: "Spiderman description", thumbnail: Thumbnail(path: "", extension: "jpg"))
+            let char2 = Character(id: 2, name: "Iron Man", description: "Ironman description", thumbnail: Thumbnail(path: "", extension: "jpg"))
+            let char3 = Character(id: 3, name: "Thanos", description: "Thanos description", thumbnail: Thumbnail(path: "", extension: "jpg"))
+            
+            completion(.success([char1, char2, char3]))
+        }
+    }
+    
+    func fetchComics(of char: Character, completion: @escaping (Result<[Comic], Error>) -> Void) {
+        if shouldFailRequests {
+            completion(.failure(NetworkError.unableToParseJSON))
+        } else {
+            let comic1 = Comic(id: 1, title: "Avengers #1", thumbnail: Thumbnail(path: "", extension: ""))
+            let comic2 = Comic(id: 2, title: "Avengers #2", thumbnail: Thumbnail(path: "", extension: ""))
+            let comic3 = Comic(id: 3, title: "Avengers #3", thumbnail: Thumbnail(path: "", extension: ""))
+            
+            completion(.success([comic1, comic2, comic3]))
         }
     }
 }
