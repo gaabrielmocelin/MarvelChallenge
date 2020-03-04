@@ -9,9 +9,13 @@
 import Foundation
 
 struct Path {
-    private let baseUrl = "https://codechallenge.arctouch.com"
+    private let baseUrl = "https://gateway.marvel.com/v1/public"
     
-    func getQuiz() -> String {
-        return "\(baseUrl)/quiz/1"
+    func characteres() -> String {
+        return "\(baseUrl)/characters"
+    }
+    
+    func comics(id: Int) -> String {
+        return "\(characteres())/\(id)/comics"
     }
 }

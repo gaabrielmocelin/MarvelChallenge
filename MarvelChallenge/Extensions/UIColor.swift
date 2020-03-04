@@ -9,8 +9,7 @@
 import UIKit
 
 extension UIColor {
-    static var orangeArcTouch = #colorLiteral(red: 1, green: 0.5137254902, blue: 0, alpha: 1)
-    static var backgroundGray = #colorLiteral(red: 0.9607843137, green: 0.9607843137, blue: 0.9607843137, alpha: 1)
-    static var textFieldGray = #colorLiteral(red: 0.9215686275, green: 0.9215686275, blue: 0.9215686275, alpha: 1)
-    static var separatorGray = #colorLiteral(red: 0.9529411765, green: 0.9529411765, blue: 0.9529411765, alpha: 1)
+    static var marvelBlack = #colorLiteral(red: 0.07058823529, green: 0.07058823529, blue: 0.07058823529, alpha: 1)
+    static var marvelDarkGray = #colorLiteral(red: 0.1647058824, green: 0.1647058824, blue: 0.1647058824, alpha: 1)
+    static var marvelRed = #colorLiteral(red: 0.8901960784, green: 0.1568627451, blue: 0.1921568627, alpha: 1)
 }

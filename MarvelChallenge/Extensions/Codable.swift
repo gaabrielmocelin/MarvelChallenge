@@ -9,14 +9,13 @@
 import Foundation
 
 extension Decodable {
-    init?(from data: Data?) {
-        guard let data = data else { return nil }
-        
-        do {
-            let decoder = JSONDecoder()
-            self = try decoder.decode(Self.self, from: data)
-        } catch {
-            return nil
-        }
-    }
+     init?(from: [String: Any]) {
+           do {
+               let data = try JSONSerialization.data(withJSONObject: from, options: .prettyPrinted)
+               let decoder = JSONDecoder()
+               self = try decoder.decode(Self.self, from: data)
+           } catch {
+               return nil
+           }
+       }
 }

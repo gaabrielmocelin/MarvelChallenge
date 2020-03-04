@@ -15,6 +15,7 @@ protocol SceneCoordinator {
     func transition(to scene: Scene, type: SceneTransitionType, presentationStyle: UIModalPresentationStyle)
     
     func dismiss(animated: Bool)
+    func didPop()
 }
 
 extension SceneCoordinator {
@@ -64,6 +65,13 @@ final class Coordinator: SceneCoordinator {
             currentViewController = actualViewController(for: presenter)
         }else if let navigationController = currentViewController.navigationController {
             navigationController.popViewController(animated: animated)
+            currentViewController = actualViewController(for: navigationController.viewControllers.last!)
+        }
+    }
+    
+    //updates the current vc if the pop was made direct from system
+    public func didPop() {
+        if let navigationController = currentViewController.navigationController {
             currentViewController = actualViewController(for: navigationController.viewControllers.last!)
         }
     }
