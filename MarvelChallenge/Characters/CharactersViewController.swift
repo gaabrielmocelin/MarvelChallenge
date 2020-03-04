@@ -48,8 +48,7 @@ final class CharactersViewController: UIViewController, SceneController {
             case .success(let indexes):
                 self.collectionView.insertItems(at: indexes)
             case .failure(let error):
-                //TODO: handle error
-                print(error)
+                self.presentAllert(title: "Failed to download some characteres", subtitle: error.localizedDescription)
             }
         }
     }

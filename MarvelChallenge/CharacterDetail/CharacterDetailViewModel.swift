@@ -34,15 +34,14 @@ final class CharacterDetailViewModel: ViewModel {
         }
     }
     
-    func fetchComics(completion: @escaping () -> Void) {
+    func fetchComics(completion: @escaping (Error?) -> Void) {
         marvelService.fetchComics(of: character) { [weak self] (result) in
             switch result {
             case .success(let comics):
                 self?.comics = comics
-                completion()
+                completion(nil)
             case .failure(let error):
-                print(error)
-                completion()
+                completion(error)
             }
         }
     }

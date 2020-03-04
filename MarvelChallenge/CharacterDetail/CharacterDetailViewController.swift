@@ -44,19 +44,23 @@ final class CharacterDetailViewController: UIViewController, SceneController {
         
         let group = DispatchGroup()
         
-        //TODO: handle error
         group.enter()
         viewModel.fetchImage { [weak self] (image) in
             group.leave()
             if let image = image {
                 self?.imageView.image = image
+            } else {
+                self?.presentAllert(title: "Failed to download character image.", subtitle: "Try again later.")
             }
         }
         
         group.enter()
-        viewModel.fetchComics { [weak self] in
+        viewModel.fetchComics { [weak self] error in
             group.leave()
             self?.tableView.reloadData()
+            if error != nil {
+                self?.presentAllert(title: "Failed to download character comics.", subtitle: "Try again later.")
+            }
         }
         
         group.notify(queue: .main) {

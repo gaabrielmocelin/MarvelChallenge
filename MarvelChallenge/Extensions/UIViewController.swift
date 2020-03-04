@@ -9,12 +9,11 @@
 import UIKit
 
 extension UIViewController {
-    func presentAllert(title: String, subtitle: String, buttonTitle: String, action: @escaping () -> Void) {
+    func presentAllert(title: String, subtitle: String) {
         let allert = UIAlertController(title: title, message: subtitle, preferredStyle: .alert)
         
-        allert.addAction(UIAlertAction(title: buttonTitle, style: .cancel, handler: { (handler) in
+        allert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: { (handler) in
             allert.dismiss(animated: true)
-            action()
         }))
         
         present(allert, animated: true)
