@@ -13,6 +13,6 @@ struct MarvelResponse<T: Decodable>: Decodable {
 }
 
 struct DataClass<T: Decodable>: Decodable {
-    let offset, limit, total, count: Int
+    let total: Int
     let results: [T]
 }

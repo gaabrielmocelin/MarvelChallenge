@@ -69,13 +69,14 @@ final class MarvelAPIMock: MarvelAPIService {
     
     var totalCharacteresNumber: Int?
     
+    let char3 = Character(id: 3, name: "Thanos", description: "Thanos description", thumbnail: Thumbnail(path: "", extension: "jpg"))
+    
     func fetchCaracteres(offset: Int, limit: Int, completion: @escaping (Result<[Character], Error>) -> Void) {
         if shouldFailRequests {
             completion(.failure(NetworkError.unableToParseJSON))
         } else {
             let char1 = Character(id: 1, name: "Spider Man", description: "Spiderman description", thumbnail: Thumbnail(path: "", extension: "jpg"))
             let char2 = Character(id: 2, name: "Iron Man", description: "Ironman description", thumbnail: Thumbnail(path: "", extension: "jpg"))
-            let char3 = Character(id: 3, name: "Thanos", description: "Thanos description", thumbnail: Thumbnail(path: "", extension: "jpg"))
             
             completion(.success([char1, char2, char3]))
         }
